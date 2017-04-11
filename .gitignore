@@ -1,0 +1,11 @@
+.idea
+htaccess.txt
+cache/*
+images/*
+tmp/*
+configuration.php
+
+
+
+
+
