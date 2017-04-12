@@ -4,6 +4,8 @@ cache/*
 images/*
 tmp/*
 configuration.php
+logs/*
+.htaccess
 
 
 
