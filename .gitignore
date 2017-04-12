@@ -1,10 +1,14 @@
 .idea
 htaccess.txt
-cache/*
-images/*
-tmp/*
+/cache/*
+!/cache/index.hmtl
+/images/*
+!/images/index.hmtl
+/tmp/*
+!/tmp/index.hmtl
 configuration.php
-logs/*
+/logs/*
+!/logs/index.hmtl
 .htaccess
 
 
