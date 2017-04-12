@@ -37,6 +37,10 @@ class PlgSystemBliss extends JPlugin
 		//移除username欄位(field)
 		$form->removeField('username');
 
+
+		//讀取form的xml檔
+		$form->loadFile(__DIR__.'/forms/profile.xml');
+
 	}
 
 	//拿出,儲存欄位都會呼叫這個funciton順便把資料塞進去
@@ -51,10 +55,27 @@ class PlgSystemBliss extends JPlugin
 			$data->username=$data->email1;
 		}
 
-
 		//因為data是物件，可直接修改，所以不用傳回去，不用return
 
 		//print_r($data);
+
+		//lock email
+		//if()
+
+		//塞profile的內容
+		if(isset($data->id)){
+			$db=JFactory::getDbo();
+			$query=$db->getQuery(true);
+
+			$query->select('*')
+				->from('#__bliss_user_profiles')
+				->where('user_id='.$data->id);
+
+			$profile=$db->setQuery($query)->loadObject();
+
+			$data->profile=$profile;
+
+		}
 
 	}
 
@@ -66,6 +87,8 @@ class PlgSystemBliss extends JPlugin
 			$email=$data['email'];
 			$id=$data['id'];
 
+
+			//username覆蓋
 			$db=JFactory::getDbo();
 
 			$query=$db->getQuery(true);
@@ -75,9 +98,50 @@ class PlgSystemBliss extends JPlugin
 				->where('id='.$id);
 
 			$db->setQuery($query)->execute();
+
+
+			//儲存profile
+			if(isset($data['profile']) && is_array($data['profile'])){
+				$profile=$data['profile'];
+
+				$this->saveProfile($data['id'],$profile);
+			}
+
 		}
 
+
+		//print_r($data);
+		//die;
+
 		return true;
+	}
+
+	protected function saveProfile($id,array $profile){
+		$db=JFactory::getDbo();
+
+		$query=$db->getQuery(true);
+
+		$data=(object) $profile;
+		$data->user_id=$id;
+
+
+		//確認這個人的userprofile是否建立了
+		$query->select('id')
+			->from('#__bliss_user_profiles')
+			->where('user_id='.$id);
+		$exists=$db->setQuery($query)->loadResult();
+
+		if(!$exists)
+		{
+
+			$db->insertObject('#__bliss_user_profiles', $data);
+		}
+		else
+		{
+			$db->updateObject('#__bliss_user_profiles',$data,'user_id');
+		}
+
+
 	}
 }
 ?>
