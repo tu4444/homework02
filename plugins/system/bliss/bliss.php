@@ -79,6 +79,17 @@ class PlgSystemBliss extends JPlugin
 
 	}
 
+	public function onUserBeforeSave($oldUser, $isNew, $newUser)
+	{
+		$app = JFactory::getApplication();
+		if($newUser['phone']==''){
+			$app->enqueueMessage('phone沒填','error');
+			return false;
+		}
+
+		return true;
+	}
+
 	//因使用者修改email不會同步修改username
 	//在網站上只要user儲存就會呼叫此function
 	public function onUserAfterSave($data, $isNew, $result, $error)
