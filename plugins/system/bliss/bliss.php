@@ -37,6 +37,9 @@ class PlgSystemBliss extends JPlugin
 		//移除username欄位(field)
 		$form->removeField('username');
 
+		//移除email2欄位
+		$form->removeField('email2');
+
 
 		//讀取form的xml檔
 		$form->loadFile(__DIR__.'/forms/profile.xml');
@@ -51,15 +54,19 @@ class PlgSystemBliss extends JPlugin
 			return;
 		}
 
-		if(isset($data->email1)){ //因為註冊無email1的值
+		//將email1塞給隱藏的欄位：username、email2
+		if(isset($data->email1)){ //因為註冊頁無email1的值
 			$data->username=$data->email1;
+			$data->email2=$data->email1;
 		}
 
+		//echo 'onContentPrepareData:';
+		//echo '<pre>'.print_r($data,1).'</pre>';
+
+		//die;
 		//因為data是物件，可直接修改，所以不用傳回去，不用return
 
-		//print_r($data);
-
-		//lock email
+		//修改會員資料頁面，lock email，
 		//if()
 
 		//塞profile的內容
@@ -82,10 +89,15 @@ class PlgSystemBliss extends JPlugin
 	public function onUserBeforeSave($oldUser, $isNew, $newUser)
 	{
 		$app = JFactory::getApplication();
-		if($newUser['phone']==''){
+
+		//echo 'onUserBeforeSave';
+		//echo '<pre>'.print_r($newUser,1).'</pre>';
+
+		//die;
+		/*if($newUser['profile']['phone']==''){
 			$app->enqueueMessage('phone沒填','error');
 			return false;
-		}
+		}*/
 
 		return true;
 	}
