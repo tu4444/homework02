@@ -11,16 +11,16 @@ class BlissHelper{
 	public static function arrangeDefaultFields($fields){
 		//若fieldset為default，field要重新排序
 		$arrange=array();
-		$indexset=array('jform_spacer','jform_email1','jform_name','jform_password1','jform_password2','jform_captcha');
-		//if($fieldset->name=='default'){
-			foreach ($indexset as $i){
-				foreach ($fields as $field){
-					if($field->id==$i){array_push($arrange,$field);}
-				}
-			}
+		$indexset=array('jform_spacer','jform_email1','jform_password1','jform_password2','jform_name','jform_captcha');
 
-			return $arrange;
-		//}
+		foreach ($indexset as $i){
+			foreach ($fields as $field){
+				if($field->id==$i){array_push($arrange,$field);}
+			}
+		}
+
+		return $arrange;
+
 
 	}
 

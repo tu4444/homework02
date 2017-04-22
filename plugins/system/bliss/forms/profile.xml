@@ -1,6 +1,6 @@
 <form>
    <fields name="profile">
-       <fieldset name="details" label="Details">
+       <fieldset name="details" label="Details" addfieldpath="plugins/system/bliss/fields">
            <field
                    name="address"
                    type="text"
@@ -10,8 +10,8 @@
                    hint="please enter address"
            />
            <field
-                   name="phone"
-                   type="text"
+                   name="contact_phone"
+                   type="phone"
                    label="phone"
                    description="this is phone"
                    class=""
@@ -25,6 +25,26 @@
                    description="this is birthday"
                    class=""
                    hint="please enter birthday"
+           />
+           <field
+                   name="is_upnta"
+                   type="usercheck"
+                   label="是否上傳國稅局"
+                   description="我想預設同意收據上傳國稅局"
+                   value="1"
+                   default="1"
+                   required="true"
+           />
+           <field
+                   name="iagree"
+                   type="usercheck"
+                   label="Show title"
+                   description="我已詳細閱讀並同意"
+                   custom="會員條款"
+                   customlink="http://www.blisswisdom.org"
+                   value="1"
+                   default="1"
+                   required="true"
            />
        </fieldset>
 
