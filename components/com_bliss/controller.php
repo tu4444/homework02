@@ -12,7 +12,9 @@ class BlissController extends JControllerLegacy{
 
 		$model=$this->getModel($viewName);
 
-		$view->setModel($model,true);
+		if($model){
+			$view->setModel($model,true);
+		}
 
 		$view->setLayout($viewLayout);
 
