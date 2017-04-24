@@ -81,6 +81,7 @@ class BlissController extends JControllerLegacy{
 
 	}
 
+	//將驗證拉出來，因為3個function
 	public function valudate(){
 
 	}

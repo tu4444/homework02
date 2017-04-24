@@ -1,6 +1,6 @@
 <form>
    <fields name="profile">
-       <fieldset name="details" label="Details">
+       <fieldset name="details" label="Details" addfieldpath="plugins/system/bliss/fields">
            <field
                    name="address"
                    type="text"
@@ -8,6 +8,31 @@
                    description="this is address"
                    class="input-xlarge"
                    hint="please enter address"
+           />
+         <!--  <field
+                   name="city"
+                   type="sql"
+                   label="city"
+                   description="this is city"
+                   query="select id,title from #__content where state=1"
+
+                   class="input-xlarge"
+                   hint="please enter city"
+           />           -->
+
+           <!--
+            attribute
+
+            showon="city:1"
+
+           -->
+           <field
+                   name="city"
+                   type="cities"
+                   label="city"
+                   description="this is city"
+                   class="input-xlarge"
+                   hint="please enter city"
            />
            <field
                    name="phone"
