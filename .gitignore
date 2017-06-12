@@ -10,6 +10,7 @@ configuration.php
 /logs/*
 !/logs/index.hmtl
 .htaccess
+/env.php
 
 
 
