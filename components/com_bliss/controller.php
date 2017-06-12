@@ -89,6 +89,11 @@ class BlissController extends JControllerLegacy{
 	}
 
 
+	public function registrationAjax(){
+
+
+	}
+
 
 }
 
